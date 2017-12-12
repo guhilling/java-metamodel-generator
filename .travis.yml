@@ -12,13 +12,9 @@ language: java
 
 jdk:
   - oraclejdk8
-  - oraclejdk9
-
-
-matrix:
 
 script:
-  - mvn test -P${CDI} jacoco:report coveralls:report
+  - mvn test -P${CDI} jacoco:report
 
 cache:
   directories:
