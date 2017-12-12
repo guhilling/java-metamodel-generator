@@ -39,8 +39,12 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.9</version>
                 <configuration>
+                    <includes>
+                        <include>de/hilling/lang/**</include>
+                    </includes>
                     <excludes>
-                        <exclude>**/*__Metamodel.*</exclude>
+                        <exclude>**/*Metamodel</exclude>
+                        <exclude>**/*Metamodel$*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
