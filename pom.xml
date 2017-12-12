@@ -40,9 +40,7 @@
                 <version>0.7.9</version>
                 <configuration>
                     <excludes>
-                        <exclude>
-                            <exclude>**/*__Metamodel.*</exclude>
-                        </exclude>
+                        <exclude>**/*__Metamodel.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
