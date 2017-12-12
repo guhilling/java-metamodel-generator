@@ -14,7 +14,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - mvn test jacoco:report
+  - mvn test jacoco:report coveralls:report
 
 cache:
   directories:
