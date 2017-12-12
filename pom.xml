@@ -38,6 +38,13 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.9</version>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <exclude>**/*__Metamodel.*</exclude>
+                        </exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>pre-unit-test</id>
@@ -74,6 +81,9 @@
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.3.0</version>
+                <configuration>
+                    <
+                </configuration>
             </plugin>
         </plugins>
     </build>
