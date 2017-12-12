@@ -1,43 +1,43 @@
 package de.hilling.lang.metamodel;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.processing.ProcessingEnvironment;
 
 /**
- * Verarbeitungskontext.
+ * Processor context for one class.
  */
 public class Context {
     private final ProcessingEnvironment env;
     private final Map<String, AttributeInfo> attributes    = new HashMap<>();
-    private final List<String>               attributeList = new ArrayList<>();
 
-    public Context(ProcessingEnvironment env) {
+    Context(ProcessingEnvironment env) {
         this.env = env;
     }
 
-    public AttributeInfo getInfo(String attributeName) {
-        if(!attributes.containsKey(attributeName)) {
+    AttributeInfo getInfo(String attributeName) {
+        if (!attributes.containsKey(attributeName)) {
             attributes.put(attributeName, new AttributeInfo());
-            attributeList.add(attributeName);
         }
         return attributes.get(attributeName);
     }
 
-    public ProcessingEnvironment getEnvironment() {
+    ProcessingEnvironment getEnvironment() {
         return env;
     }
 
-    public void clear() {
+    /**
+     * Reset context after class was handled.
+     */
+    void clear() {
         attributes.clear();
-        attributeList.clear();
     }
 
-    public List<String> attributes() {
-        return attributeList;
+    /**
+     * @return map with all attributes for current class.
+     */
+    Map<String, AttributeInfo> attributes() {
+        return attributes;
     }
-
 }

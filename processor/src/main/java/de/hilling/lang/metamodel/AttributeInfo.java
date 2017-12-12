@@ -2,25 +2,19 @@ package de.hilling.lang.metamodel;
 
 import javax.lang.model.type.TypeMirror;
 
+/**
+ * Information about found attribute.
+ */
 public class AttributeInfo {
-    private boolean    getterFound;
-    private boolean    setterFound;
+    private boolean    writable;
     private TypeMirror type;
 
-    public boolean isGetterFound() {
-        return getterFound;
+    public boolean isWritable() {
+        return writable;
     }
 
-    public void setGetterFound(boolean getterFound) {
-        this.getterFound = getterFound;
-    }
-
-    public boolean isSetterFound() {
-        return setterFound;
-    }
-
-    public void setSetterFound(boolean setterFound) {
-        this.setterFound = setterFound;
+    public void setWritable(boolean writable) {
+        this.writable = writable;
     }
 
     public void setType(TypeMirror type) {

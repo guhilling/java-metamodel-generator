@@ -15,26 +15,26 @@ import com.google.testing.compile.JavaFileObjects;
 
 public class MetamodelGeneratorTest {
 
-    public static final String EXPECTED_PACKAGE = SimpleObject.class.getPackage().getName();
-
     @Test
-    public void validateValidObject() {
+    public void generateWritableBean() {
         final Compiler compiler = javac().withProcessors(new MetamodelGenerator());
         Compilation compilation = compiler.compile(source(SimpleObject.class));
 
-        /*
-        final Optional<JavaFileObject> generatedFile = compilation.generatedFile(SOURCE_OUTPUT, EXPECTED_PACKAGE,
-                                                                                  SimpleObject__Metamodel.class
-                                                                                  .getSimpleName());
-                                                                                  */
         assertAbout(compilations()).that(compilation)
                                    .generatedSourceFile("de/hilling/lang/metamodel/SimpleObject__Metamodel")
-                                   .hasSourceEquivalentTo(JavaFileObjects.forResource
-                                                                          ("SimpleObject__Metamodel.java"));
+                                   .hasSourceEquivalentTo(source(SimpleObject__Metamodel.class));
         assertThat(compilation.status()).isEqualTo(Compilation.Status.SUCCESS);
-        //assertAbout(compilations()).that(compilation).ha;
-        //assertThat(generatedFile).isPresent();
-        //assertThat(compilation.generatedSourceFile(SimpleObject__Metamodel.class.getName()))
+    }
+
+    @Test
+    public void generateReadOnlyBean() {
+        final Compiler compiler = javac().withProcessors(new MetamodelGenerator());
+        Compilation compilation = compiler.compile(source(ImmutableObject.class));
+
+        assertAbout(compilations()).that(compilation)
+                                   .generatedSourceFile("de/hilling/lang/metamodel/ImmutableObject__Metamodel")
+                                   .hasSourceEquivalentTo(source(ImmutableObject__Metamodel.class));
+        assertThat(compilation.status()).isEqualTo(Compilation.Status.SUCCESS);
     }
 
     private JavaFileObject source(Class<?> clazz) {

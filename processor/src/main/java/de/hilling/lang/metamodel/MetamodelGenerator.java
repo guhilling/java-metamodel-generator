@@ -13,6 +13,9 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
+/**
+ * Generator for
+ */
 public class MetamodelGenerator extends AbstractProcessor {
 
     private Context context;

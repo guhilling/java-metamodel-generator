@@ -1,63 +1,76 @@
 package de.hilling.lang.metamodel;
 
 import java.io.IOException;
-import java.io.Writer;
 
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.util.Elements;
-import javax.lang.model.util.Types;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
-public class MetaClassWriter {
+/**
+ * Create meta model class for given Type.
+ */
+class MetaClassWriter {
 
-    private static final String SUFFIX = "__Metamodel";
+    private static final String SUFFIX              = "__Metamodel";
 
-    private final TypeElement element;
+    private final TypeElement beanType;
     private final Context     context;
     private final String      metaClassName;
-    private final Types       typeUtils;
-    private final Elements    elementUtils;
-    private       Writer      writer;
 
-    public MetaClassWriter(TypeElement element, Context context) {
-        this.element = element;
+    /**
+     * Initialize class with {@link TypeElement} and {@link Context} containing attributes.
+     * @param beanType the bean class.
+     * @param context attribute informations about the bean class.
+     */
+    MetaClassWriter(TypeElement beanType, Context context) {
+        this.beanType = beanType;
         this.context = context;
-        metaClassName = element.getSimpleName() + SUFFIX;
-        typeUtils = context.getEnvironment().getTypeUtils();
-        elementUtils = context.getEnvironment().getElementUtils();
+        metaClassName = beanType.getSimpleName() + SUFFIX;
     }
 
-    public void invoke() throws IOException {
+    /**
+     * Create the Metamodel class.
+     * @throws IOException if source file cannot be written.
+     */
+    void invoke() throws IOException {
         TypeSpec.Builder classBuilder = TypeSpec.classBuilder(metaClassName)
                                                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT);
-        context.attributes().forEach(a -> classBuilder.addField(createFieldSpec(a)));
-
+        context.attributes().forEach((name, type) -> classBuilder.addField(createFieldSpec(name, type)));
         classBuilder.addStaticBlock(createStaticInitializerBlock());
 
-        JavaFile javaFile = JavaFile.builder(ClassName.get(element).packageName(), classBuilder.build()).build();
+        JavaFile javaFile = JavaFile.builder(ClassName.get(beanType).packageName(), classBuilder.build()).indent("    ")
+                                    .build();
         javaFile.writeTo(context.getEnvironment().getFiler());
     }
 
     private CodeBlock createStaticInitializerBlock() {
         final CodeBlock.Builder builder = CodeBlock.builder();
-        context.attributes().forEach(a -> builder.add(createInitializerBlock(a)));
+        context.attributes().forEach((name, type) -> builder.add(new InitializerBuilder(beanType, name, type).invoke()));
         return builder.build();
     }
 
-    private String createInitializerBlock(String attribute) {
-        return attribute + " = null;";
+    private FieldSpec createFieldSpec(String attributeName, AttributeInfo info) {
+        final ParameterizedTypeName fieldType = declarationTypeName(info);
+        return FieldSpec.builder(fieldType, attributeName)
+                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL).build();
     }
 
-    private FieldSpec createFieldSpec(String attributeName) {
-        final AttributeInfo info = context.getInfo(attributeName);
-        return FieldSpec.builder(TypeName.get(info.getType()), attributeName)
-                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL).build();
+    private ParameterizedTypeName declarationTypeName(AttributeInfo info) {
+        final TypeName attributeTypeName = TypeName.get(info.getType());
+        final TypeName classTypeName = TypeName.get(beanType.asType());
+        final Class declaredClass;
+        if (info.isWritable()) {
+            declaredClass = Attribute.class;
+        } else {
+            declaredClass = ReadOnlyAttribute.class;
+        }
+        return ParameterizedTypeName.get(ClassName.get(declaredClass), classTypeName, attributeTypeName);
     }
 }
