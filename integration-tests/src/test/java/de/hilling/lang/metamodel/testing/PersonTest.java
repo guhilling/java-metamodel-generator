@@ -36,6 +36,10 @@ public class PersonTest {
     }
 
     @Test
+    public void verifyAttributeListOrder() {
+    }
+
+    @Test
     public void writeAttributes() {
         Person__Metamodel.birthDate.writeAttribute(person, LocalDate.MIN);
         Person__Metamodel.firstName.writeAttribute(person, "Dennis");

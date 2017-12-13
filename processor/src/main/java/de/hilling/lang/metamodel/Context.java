@@ -36,6 +36,7 @@ public class Context {
      */
     void clear() {
         attributes.clear();
+        names.clear();
     }
 
     /**
