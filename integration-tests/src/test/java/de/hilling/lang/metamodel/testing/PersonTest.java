@@ -1,12 +1,19 @@
 package de.hilling.lang.metamodel.testing;
 
+import static de.hilling.lang.metamodel.testing.Person__Metamodel.birthDate;
+import static de.hilling.lang.metamodel.testing.Person__Metamodel.firstName;
+import static de.hilling.lang.metamodel.testing.Person__Metamodel.lastName;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import de.hilling.lang.metamodel.Attribute;
 
 public class PersonTest {
 
@@ -23,27 +30,32 @@ public class PersonTest {
 
     @Test
     public void readAttributes() {
-        assertEquals(BIRTH_DATE, Person__Metamodel.birthDate.readAttribute(person));
-        assertEquals("Gunnar", Person__Metamodel.firstName.readAttribute(person));
-        assertEquals("Hilling", Person__Metamodel.lastName.readAttribute(person));
+        assertEquals(BIRTH_DATE, birthDate.readAttribute(person));
+        assertEquals("Gunnar", firstName.readAttribute(person));
+        assertEquals("Hilling", lastName.readAttribute(person));
     }
 
     @Test
     public void checkAttributes() {
-        assertEquals(Person.class, Person__Metamodel.birthDate.getDeclaringType());
-        assertEquals(LocalDate.class, Person__Metamodel.birthDate.getJavaType());
-        assertEquals("birthDate", Person__Metamodel.birthDate.getName());
+        assertEquals(Person.class, birthDate.getDeclaringType());
+        assertEquals(LocalDate.class, birthDate.getJavaType());
+        assertEquals("birthDate", birthDate.getName());
     }
 
     @Test
     public void verifyAttributeListOrder() {
+        final List<Attribute> attributes = Person__Metamodel.attributes();
+        assertEquals(3, attributes.size());
+        assertEquals(firstName, attributes.get(0));
+        assertEquals(lastName, attributes.get(1));
+        assertEquals(birthDate, attributes.get(2));
     }
 
     @Test
     public void writeAttributes() {
-        Person__Metamodel.birthDate.writeAttribute(person, LocalDate.MIN);
-        Person__Metamodel.firstName.writeAttribute(person, "Dennis");
-        Person__Metamodel.lastName.writeAttribute(person, "Ritchie");
+        birthDate.writeAttribute(person, LocalDate.MIN);
+        firstName.writeAttribute(person, "Dennis");
+        lastName.writeAttribute(person, "Ritchie");
         assertEquals(LocalDate.MIN, person.getBirthDate());
         assertEquals("Dennis", person.getFirstName());
         assertEquals("Ritchie", person.getLastName());
