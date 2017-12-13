@@ -11,13 +11,25 @@ addons:
       - master
       - sonarcloud
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID=e425ef394077097a45c21ba569a0af90b39ff44fb35709becf535fa1e6cf2e26
+
 language: java
 
 jdk:
 - oraclejdk8
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
 - mvn test sonar:sonar
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 cache:
   directories:
