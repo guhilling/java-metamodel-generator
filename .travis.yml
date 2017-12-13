@@ -29,8 +29,12 @@ script:
 - mvn test sonar:sonar
 
 after_script:
-- cp report/target/site/jacoco-aggregate/jacoco.xml .
-- ./cc-test-reporter after-build --coverage-input-type jacoco --exit-code $TRAVIS_TEST_RESULT --debug
+- mkdir tmp
+- cp report/target/site/jacoco-aggregate/jacoco.xml tmp
+- cp -r api/src/main/java/de tmp/
+- cp -r processor/src/main/java/de tmp/
+cd tmp
+- ../cc-test-reporter after-build --coverage-input-type jacoco --exit-code $TRAVIS_TEST_RESULT --debug
 
 cache:
   directories:
