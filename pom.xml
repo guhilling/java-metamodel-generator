@@ -19,6 +19,7 @@
         <module>api</module>
         <module>processor</module>
         <module>integration-tests</module>
+        <module>report</module>
     </modules>
 
     <build>
