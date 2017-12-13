@@ -5,10 +5,10 @@ import java.lang.String;
 
 public abstract class SimpleObject__Metamodel {
 
-    public static final Attribute<SimpleObject, String> name;
+    public static final MutableAttribute<SimpleObject, String> name;
 
     static {
-        name = new AttributeImplementation<SimpleObject, String>("name", SimpleObject.class, String.class) {
+        name = new MutableAttributeImplementation<SimpleObject, String>("name", SimpleObject.class, String.class) {
             @Override
             public String readAttribute(SimpleObject object) {
                 return object.getName();

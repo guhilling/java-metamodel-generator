@@ -1,11 +1,11 @@
 package de.hilling.lang.metamodel.testing;
 
-import de.hilling.lang.metamodel.MetaModel;
+import de.hilling.lang.metamodel.GenerateModel;
 
 /**
  * Example for read-only bean.
  */
-@MetaModel
+@GenerateModel
 public class ImmutableObject {
     private final String name;
 

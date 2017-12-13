@@ -28,7 +28,7 @@ public class MetamodelGenerator extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        for (Element element : roundEnv.getElementsAnnotatedWith(MetaModel.class)) {
+        for (Element element : roundEnv.getElementsAnnotatedWith(GenerateModel.class)) {
             TypeElement typeElement = (TypeElement) element;
             messager().printMessage(Diagnostic.Kind.NOTE, "processing " + element);
             new ClassHandler(typeElement, context).invoke();
@@ -44,7 +44,7 @@ public class MetamodelGenerator extends AbstractProcessor {
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
-        return Collections.singleton(MetaModel.class.getCanonicalName());
+        return Collections.singleton(GenerateModel.class.getCanonicalName());
     }
 
     @Override
