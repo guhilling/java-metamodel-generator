@@ -1,6 +1,8 @@
 package de.hilling.lang.metamodel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.processing.ProcessingEnvironment;
@@ -10,7 +12,8 @@ import javax.annotation.processing.ProcessingEnvironment;
  */
 public class Context {
     private final ProcessingEnvironment env;
-    private final Map<String, AttributeInfo> attributes    = new HashMap<>();
+    private final Map<String, AttributeInfo> attributes = new HashMap<>();
+    private final List<String>               names      = new ArrayList<>();
 
     Context(ProcessingEnvironment env) {
         this.env = env;
@@ -19,6 +22,7 @@ public class Context {
     AttributeInfo getInfo(String attributeName) {
         if (!attributes.containsKey(attributeName)) {
             attributes.put(attributeName, new AttributeInfo());
+            names.add(attributeName);
         }
         return attributes.get(attributeName);
     }
@@ -39,5 +43,12 @@ public class Context {
      */
     Map<String, AttributeInfo> attributes() {
         return attributes;
+    }
+
+    /**
+     * @return attribute names in declaration order.
+     */
+    List<String> names() {
+        return names;
     }
 }
