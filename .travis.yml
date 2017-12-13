@@ -33,7 +33,7 @@ after_script:
 - cp report/target/site/jacoco-aggregate/jacoco.xml tmp
 - cp -r api/src/main/java/de tmp/
 - cp -r processor/src/main/java/de tmp/
-cd tmp
+- cd tmp
 - ../cc-test-reporter after-build --coverage-input-type jacoco --exit-code $TRAVIS_TEST_RESULT --debug
 
 cache:
