@@ -1,6 +1,7 @@
 package de.hilling.lang.metamodel.testing;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,6 @@ public class ImmutableObjectTest {
 
     @Test
     public void readAttributes() {
-        Assert.assertEquals("Duke", ImmutableObject__Metamodel.name.readAttribute(object));
-
+        assertEquals("Duke", ImmutableObject__Metamodel.name.readAttribute(object));
     }
 }

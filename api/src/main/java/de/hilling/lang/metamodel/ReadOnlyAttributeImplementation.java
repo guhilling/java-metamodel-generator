@@ -11,7 +11,7 @@ public abstract class ReadOnlyAttributeImplementation<T, A> implements ReadOnlyA
     private final   Class<T> declaringType;
     private final   Class<A> javaType;
 
-    public ReadOnlyAttributeImplementation(String name, Class<T> declaringType, Class<A> javaType) {
+    protected ReadOnlyAttributeImplementation(String name, Class<T> declaringType, Class<A> javaType) {
         this.javaType = javaType;
         this.name = name;
         this.declaringType = declaringType;

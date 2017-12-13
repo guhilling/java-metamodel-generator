@@ -19,6 +19,7 @@
         <module>api</module>
         <module>processor</module>
         <module>integration-tests</module>
+        <module>report</module>
     </modules>
 
     <build>
@@ -44,6 +45,7 @@
                         <include>de/hilling/lang/**</include>
                     </includes>
                     <excludes>
+                        <exclude>de/hilling/lang/metamodel/testing/**</exclude>
                         <exclude>**/*Metamodel</exclude>
                         <exclude>**/*Metamodel$*</exclude>
                     </excludes>

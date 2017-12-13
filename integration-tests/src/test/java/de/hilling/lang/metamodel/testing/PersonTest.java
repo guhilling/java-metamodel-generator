@@ -1,9 +1,10 @@
 package de.hilling.lang.metamodel.testing;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.LocalDate;
 import java.time.Month;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,9 +23,16 @@ public class PersonTest {
 
     @Test
     public void readAttributes() {
-        Assert.assertEquals(BIRTH_DATE, Person__Metamodel.birthDate.readAttribute(person));
-        Assert.assertEquals("Gunnar", Person__Metamodel.firstName.readAttribute(person));
-        Assert.assertEquals("Hilling", Person__Metamodel.lastName.readAttribute(person));
+        assertEquals(BIRTH_DATE, Person__Metamodel.birthDate.readAttribute(person));
+        assertEquals("Gunnar", Person__Metamodel.firstName.readAttribute(person));
+        assertEquals("Hilling", Person__Metamodel.lastName.readAttribute(person));
+    }
+
+    @Test
+    public void checkAttributes() {
+        assertEquals(Person.class, Person__Metamodel.birthDate.getDeclaringType());
+        assertEquals(LocalDate.class, Person__Metamodel.birthDate.getJavaType());
+        assertEquals("birthDate", Person__Metamodel.birthDate.getName());
     }
 
     @Test
@@ -32,8 +40,8 @@ public class PersonTest {
         Person__Metamodel.birthDate.writeAttribute(person, LocalDate.MIN);
         Person__Metamodel.firstName.writeAttribute(person, "Dennis");
         Person__Metamodel.lastName.writeAttribute(person, "Ritchie");
-        Assert.assertEquals(LocalDate.MIN, person.getBirthDate());
-        Assert.assertEquals("Dennis", person.getFirstName());
-        Assert.assertEquals("Ritchie", person.getLastName());
+        assertEquals(LocalDate.MIN, person.getBirthDate());
+        assertEquals("Dennis", person.getFirstName());
+        assertEquals("Ritchie", person.getLastName());
     }
 }
