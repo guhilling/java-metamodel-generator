@@ -29,6 +29,7 @@ script:
 - mvn test sonar:sonar
 
 after_script:
+- cp /processor/target/site/jacoco-ut/jacoco.xml .
 - ./cc-test-reporter after-build -t jacoco --exit-code $TRAVIS_TEST_RESULT
 
 cache:
