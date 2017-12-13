@@ -3,7 +3,7 @@ dist: trusty
 group: edge
 addons:
   sonarcloud:
-    organization: guhilling-github
+    organization: "guhilling-github"
     token:
       secure: "Y6iRh5NE8IwAAq+wTwwpLAjH3Bm/4tOpn+eAanKcBskgybZrwNZNLmkOPUjS7/9m0f9PMoHER1kAAuzPxAiGO7JuGciPuUFGu02dlzDXd4oTxTJFsVmyBNrK9j+N+/fICE9No8LNbxSLV8uSxpv4fORnhk38WEhm+4JIq2CBojiHYQHPXX8JHBmXXonUHz8rYEQmGPH7vGIAm8iHah5v1c/lbJBJs9ra7ZOX2lLWavCE/ElYTslRhjt5fzOfjWwAXzRuJO+fYbBE5Do8Y2yJmLHqWDCkqpV37r4kvFRUtbFbGzYdpZpV5tttYgZkgi+s7XWKNXBroEscwIMQ5u9B3Ckd3P1k2ryBCgVWzzeCv2hXLrvkgx2F5IsnxtibQda1zUZ9DL1kPjAT1iqQ3GGKPJKj4p8Z5N9XbSoIkyVVkCiKagEwuwssD77D3x8lKOejcJIMYIvCOlYM0GxlqPLPfTTOm7btnOBBH5jNpE3HQOR/EuLQV1+P8yGVoO6NZiJA6ueDXjjAaus1enBs/L4oOhxhMmmsfyEoWvqTms5VnN7BtVomtMGVN0wQaQVoIaFG1n+/LHpx7Dn3lj1zfbajaG+eUbsLdN67X8TvSlwQuC8jx5dG2JHyewBo9afTAbv/YeIf5/XwKB0LAWmm9XJc1XCMirrTyaX9gmOpraVb0e4="
 language: java
