@@ -9,13 +9,6 @@
 
     <artifactId>processor</artifactId>
 
-    <properties>
-        <compile-testing.version>0.14</compile-testing.version>
-        <truth.version>0.36</truth.version>
-        <junit.version>4.12</junit.version>
-        <guava.version>23.1-jre</guava.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>de.hilling.lang.metamodel</groupId>
@@ -25,39 +18,11 @@
         <dependency>
             <groupId>com.squareup</groupId>
             <artifactId>javapoet</artifactId>
-            <version>1.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.google.testing.compile</groupId>
             <artifactId>compile-testing</artifactId>
-            <version>${compile-testing.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.truth</groupId>
-            <artifactId>truth</artifactId>
-            <version>${truth.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.truth.extensions</groupId>
-            <artifactId>truth-java8-extension</artifactId>
-            <version>${truth.version}</version>
         </dependency>
     </dependencies>
 
