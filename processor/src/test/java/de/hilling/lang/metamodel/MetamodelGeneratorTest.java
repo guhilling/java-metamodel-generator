@@ -45,10 +45,14 @@ public class MetamodelGeneratorTest {
 
     @Test
     public void failOnIllegalAnnotation() {
-        Compilation compilation = compiler.compile(source(IllegallyUsedAnnotation.class));
+        final JavaFileObject illegalSource = source(IllegallyUsedAnnotation.class);
+        Compilation compilation = compiler.compile(illegalSource);
 
         assertAbout(compilations()).that(compilation)
-                                   .hadErrorContaining(MetamodelVerifier.ERROR_MESSAGE);
+                                   .hadErrorContaining(MetamodelVerifier.ERROR_MESSAGE)
+                                   .inFile(illegalSource)
+                                   .onLine(3)
+                                   .atColumn(1);
         assertThat(compilation.status()).isEqualTo(Compilation.Status.FAILURE);
     }
 
