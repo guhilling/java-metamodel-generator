@@ -1,17 +1,39 @@
 package de.hilling.lang.metamodel;
 
 /**
- * Description for a mutable attribute of a bean-style class.
+ * Description for a read-only attribute of a bean-style class.
  * @param <T> Declaring class of the attribute.
  * @param <A> Type of the attribute.
  */
-public interface Attribute<T, A> extends ReadOnlyAttribute<T, A> {
+public interface Attribute<T, A> {
+    /**
+     * Return the name of the attribute.
+     *
+     * @return name
+     */
+    String getName();
 
     /**
-     * Set the attribute value on the given object.
+     * Return the managed type representing the type in which
+     * the attribute was declared.
+     *
+     * @return declaring type
+     */
+    Class<T> getDeclaringType();
+
+    /**
+     * Return the Java type of the represented attribute.
+     *
+     * @return Java type
+     */
+    Class<A> getJavaType();
+
+    /**
+     * Retrieve the attribute value from declaring object.
      *
      * @param object the object.
-     * @param value  value of attribute to set.
+     *
+     * @return value of the attribute in given object.
      */
-    void writeAttribute(T object, A value);
+    A readAttribute(T object);
 }

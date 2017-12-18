@@ -1,6 +1,6 @@
 package de.hilling.lang.metamodel;
 
-@MetaModel
+@GenerateModel
 public class ImmutableObject {
 
     private final String name;

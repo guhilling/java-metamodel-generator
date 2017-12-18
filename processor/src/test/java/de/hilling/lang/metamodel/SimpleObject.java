@@ -1,6 +1,6 @@
 package de.hilling.lang.metamodel;
 
-@MetaModel
+@GenerateModel
 public class SimpleObject {
 
     private String name;

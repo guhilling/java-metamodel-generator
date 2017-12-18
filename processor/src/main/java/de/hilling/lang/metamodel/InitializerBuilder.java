@@ -61,9 +61,9 @@ class InitializerBuilder {
     private ParameterizedTypeName implementationTypeName() {
         final Class implementationClass;
         if (info.isWritable()) {
-            implementationClass = AttributeImplementation.class;
+            implementationClass = MutableAttributeImplementation.class;
         } else {
-            implementationClass = ReadOnlyAttributeImplementation.class;
+            implementationClass = AttributeImplementation.class;
         }
         return ParameterizedTypeName.get(ClassName.get(implementationClass), classTypeName, attributeTypeName);
     }

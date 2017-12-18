@@ -2,12 +2,12 @@ package de.hilling.lang.metamodel.testing;
 
 import java.time.LocalDate;
 
-import de.hilling.lang.metamodel.MetaModel;
+import de.hilling.lang.metamodel.GenerateModel;
 
 /**
  * Example for standard java bean with different data types.
  */
-@MetaModel
+@GenerateModel
 public class Person {
     private String    firstName;
     private String    lastName;
