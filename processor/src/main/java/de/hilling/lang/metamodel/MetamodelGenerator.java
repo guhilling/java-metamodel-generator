@@ -14,7 +14,7 @@ import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
 /**
- * Generator for
+ * Generate static metamodel for plain java classes.
  */
 public class MetamodelGenerator extends AbstractProcessor {
 
@@ -28,18 +28,20 @@ public class MetamodelGenerator extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        for (Element element : roundEnv.getElementsAnnotatedWith(GenerateModel.class)) {
-            TypeElement typeElement = (TypeElement) element;
-            messager().printMessage(Diagnostic.Kind.NOTE, "processing " + element);
-            new ClassHandler(typeElement, context).invoke();
-            writeMetaClass(typeElement, context);
-            context.clear();
-        }
+        roundEnv.getElementsAnnotatedWith(GenerateModel.class).forEach(this::generateMetamodel);
         if (!roundEnv.processingOver() && round > 20) {
             messager().printMessage(Diagnostic.Kind.ERROR, "possible processing loop detected (21)");
         }
         round++;
         return false;
+    }
+
+    private void generateMetamodel(Element element) {
+        TypeElement typeElement = (TypeElement) element;
+        messager().printMessage(Diagnostic.Kind.NOTE, "processing " + element);
+        new ClassHandler(typeElement, context).invoke();
+        writeMetaClass(typeElement, context);
+        context.clear();
     }
 
     @Override

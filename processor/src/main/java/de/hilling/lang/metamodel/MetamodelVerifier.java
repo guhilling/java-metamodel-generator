@@ -36,11 +36,7 @@ public class MetamodelVerifier extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        if (!roundEnv.processingOver()) {
-            for (Element element : roundEnv.getElementsAnnotatedWith(GenerateModel.class)) {
-                verifyNotAnAnnotation(element);
-            }
-        }
+        roundEnv.getElementsAnnotatedWith(GenerateModel.class).forEach(this::verifyNotAnAnnotation);
         return false;
     }
 
@@ -51,8 +47,7 @@ public class MetamodelVerifier extends AbstractProcessor {
     }
 
     private void compilerErrorMessage(Element element) {
-        AnnotationMirror annotation = element.getAnnotationMirrors()
-                                             .stream()
+        AnnotationMirror annotation = element.getAnnotationMirrors().stream()
                                              .filter(m -> typeUtils.isSameType(m.getAnnotationType(), generateModel))
                                              .findFirst()
                                              .orElseThrow(() -> new RuntimeException("internal compiler error"));
