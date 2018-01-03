@@ -8,14 +8,14 @@ import java.util.Map;
 import javax.annotation.processing.ProcessingEnvironment;
 
 /**
- * Processor context for one class.
+ * Properties model for class.
  */
-public class Context {
+public class ClassModel {
     private final ProcessingEnvironment env;
     private final Map<String, AttributeInfo> attributes = new HashMap<>();
     private final List<String>               names      = new ArrayList<>();
 
-    Context(ProcessingEnvironment env) {
+    ClassModel(ProcessingEnvironment env) {
         this.env = env;
     }
 
@@ -29,14 +29,6 @@ public class Context {
 
     ProcessingEnvironment getEnvironment() {
         return env;
-    }
-
-    /**
-     * Reset context after class was handled.
-     */
-    void clear() {
-        attributes.clear();
-        names.clear();
     }
 
     /**

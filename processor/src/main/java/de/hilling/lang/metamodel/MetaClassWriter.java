@@ -26,17 +26,17 @@ class MetaClassWriter {
     public static final String ATTRIBUTES_FIELD = "ATTRIBUTES";
 
     private final TypeElement beanType;
-    private final Context     context;
+    private final ClassModel  classModel;
     private final String      metaClassName;
 
     /**
-     * Initialize class with {@link TypeElement} and {@link Context} containing attributes.
+     * Initialize class with {@link TypeElement} and {@link ClassModel} containing attributes.
      * @param beanType the bean class.
-     * @param context attribute informations about the bean class.
+     * @param classModel attribute informations about the bean class.
      */
-    MetaClassWriter(TypeElement beanType, Context context) {
+    MetaClassWriter(TypeElement beanType, ClassModel classModel) {
         this.beanType = beanType;
-        this.context = context;
+        this.classModel = classModel;
         metaClassName = beanType.getSimpleName() + SUFFIX;
     }
 
@@ -48,7 +48,7 @@ class MetaClassWriter {
         TypeSpec.Builder classBuilder = TypeSpec.classBuilder(metaClassName)
                                                 .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT);
         classBuilder.addField(createAttributeListField());
-        context.attributes().forEach((name, type) -> classBuilder.addField(createFieldSpec(name, type)));
+        classModel.attributes().forEach((name, type) -> classBuilder.addField(createFieldSpec(name, type)));
 
         classBuilder.addMethod(MethodSpec.methodBuilder("attributes")
                                          .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
@@ -59,7 +59,7 @@ class MetaClassWriter {
 
         JavaFile javaFile = JavaFile.builder(ClassName.get(beanType).packageName(), classBuilder.build()).indent("    ")
                                     .build();
-        javaFile.writeTo(context.getEnvironment().getFiler());
+        javaFile.writeTo(classModel.getEnvironment().getFiler());
     }
 
     private FieldSpec createAttributeListField() {
@@ -69,9 +69,9 @@ class MetaClassWriter {
 
     private CodeBlock createStaticInitializerBlock() {
         final CodeBlock.Builder builder = CodeBlock.builder();
-        context.attributes().forEach((name, type) -> builder.add(new InitializerBuilder(beanType, name, type).invoke()));
+        classModel.attributes().forEach((name, type) -> builder.add(new InitializerBuilder(beanType, name, type).invoke()));
         builder.addStatement("$T<$T> attributesList = new $T<>()", List.class, Attribute.class, LinkedList.class);
-        for (String attributeName : context.names()) {
+        for (String attributeName : classModel.names()) {
             builder.addStatement("attributesList.add($L)", attributeName);
         }
         builder.addStatement("$L = $T.unmodifiableList(attributesList)", ATTRIBUTES_FIELD, Collections.class);

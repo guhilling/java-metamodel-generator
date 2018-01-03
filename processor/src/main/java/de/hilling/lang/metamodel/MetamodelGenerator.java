@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;
-import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -18,13 +17,7 @@ import javax.tools.Diagnostic;
  */
 public class MetamodelGenerator extends AbstractProcessor {
 
-    private Context context;
     private int round;
-
-    @Override
-    public void init(ProcessingEnvironment env) {
-        context = new Context(env);
-    }
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -39,9 +32,8 @@ public class MetamodelGenerator extends AbstractProcessor {
     private void generateMetamodel(Element element) {
         TypeElement typeElement = (TypeElement) element;
         messager().printMessage(Diagnostic.Kind.NOTE, "processing " + element);
-        new ClassHandler(typeElement, context).invoke();
-        writeMetaClass(typeElement, context);
-        context.clear();
+        final ClassModel classModel = new ClassHandler(typeElement, processingEnv).invoke();
+        writeMetaClass(typeElement, classModel);
     }
 
     @Override
@@ -54,16 +46,16 @@ public class MetamodelGenerator extends AbstractProcessor {
         return SourceVersion.RELEASE_8;
     }
 
-    private void writeMetaClass(TypeElement element, Context context) {
+    private void writeMetaClass(TypeElement element, ClassModel classModel) {
         try {
-            new MetaClassWriter(element, context).invoke();
+            new MetaClassWriter(element, classModel).invoke();
         } catch (IOException e) {
             messager().printMessage(Diagnostic.Kind.ERROR, "Writing metaclass failed", element);
         }
     }
 
     private Messager messager() {
-        return context.getEnvironment().getMessager();
+        return processingEnv.getMessager();
     }
 
 }
