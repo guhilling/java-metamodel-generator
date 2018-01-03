@@ -1,7 +1,6 @@
 package de.hilling.lang.metamodel;
 
 import javax.annotation.processing.ProcessingEnvironment;
-import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
@@ -26,19 +25,21 @@ public class ClassHandler {
      * Collect information about class attributes.
      */
     ClassModel invoke() {
-        for (Element enclosed : type.getEnclosedElements()) {
-            if (enclosed.getKind() == ElementKind.METHOD) {
-                ExecutableElement executable = (ExecutableElement) enclosed;
-                if (Utils.isGetter(executable)) {
-                    String attributeName = Utils.attributeNameForAccessor(executable);
-                    AttributeInfo info = classModel.getInfo(attributeName);
-                    info.setType(executable.getReturnType());
-                } else if (Utils.isSetter(executable)) {
-                    String attributeName = Utils.attributeNameForAccessor(executable);
-                    classModel.getInfo(attributeName).setWritable(true);
-                }
-            }
-        }
+        type.getEnclosedElements().stream()
+            .filter(element -> element.getKind() == ElementKind.METHOD)
+            .map(element -> (ExecutableElement) element)
+            .forEach(this::collectAccessorInfo);
         return classModel;
+    }
+
+    private void collectAccessorInfo(ExecutableElement methodRef) {
+        if (Utils.isGetter(methodRef)) {
+            String attributeName = Utils.attributeNameForAccessor(methodRef);
+            AttributeInfo info = classModel.getInfo(attributeName);
+            info.setType(methodRef.getReturnType());
+        } else if (Utils.isSetter(methodRef)) {
+            String attributeName = Utils.attributeNameForAccessor(methodRef);
+            classModel.getInfo(attributeName).setWritable(true);
+        }
     }
 }
