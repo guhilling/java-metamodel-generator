@@ -22,8 +22,8 @@ import com.squareup.javapoet.TypeSpec;
  */
 class MetaClassWriter {
 
-    private static final String SUFFIX = "__Metamodel";
-    public static final String ATTRIBUTES_FIELD = "ATTRIBUTES";
+    private static final String SUFFIX           = "__Metamodel";
+    private static final String ATTRIBUTES_FIELD = "ATTRIBUTES";
 
     private final TypeElement beanType;
     private final ClassModel  classModel;
