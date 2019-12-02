@@ -3,27 +3,27 @@
     <parent>
         <groupId>de.hilling.lang.metamodel</groupId>
         <artifactId>metamodel-generator</artifactId>
-        <version>1.3</version>
+        <version>1.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>report</artifactId>
-    <version>1.3</version>
+    <version>1.4-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>de.hilling.lang.metamodel</groupId>
             <artifactId>api</artifactId>
-            <version>1.3</version>
+            <version>1.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>de.hilling.lang.metamodel</groupId>
             <artifactId>integration-tests</artifactId>
-            <version>1.3</version>
+            <version>1.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>de.hilling.lang.metamodel</groupId>
             <artifactId>processor</artifactId>
-            <version>1.3</version>
+            <version>1.4-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
