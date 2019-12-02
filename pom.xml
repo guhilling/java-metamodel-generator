@@ -18,6 +18,12 @@
         <guava.version>23.1-jre</guava.version>
     </properties>
 
+    <scm>
+        <connection>scm:git:https://github.com/guhilling/java-metamodel-generator.git</connection>
+        <developerConnection>scm:git:https://github.com/guhilling/java-metamodel-generator.git</developerConnection>
+        <url>https://github.com/guhilling/java-metamodel-generator.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <modules>
         <module>api</module>
