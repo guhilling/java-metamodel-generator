@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <compile-testing.version>0.14</compile-testing.version>
+        <compile-testing.version>0.18</compile-testing.version>
         <truth.version>0.36</truth.version>
         <guava.version>23.1-jre</guava.version>
     </properties>
