@@ -204,10 +204,10 @@
                                 <configuration>
                                     <rules>
                                         <requireMavenVersion>
-                                            <version>3.5</version>
+                                            <version>3.6</version>
                                         </requireMavenVersion>
                                         <requireJavaVersion>
-                                            <version>1.11</version>
+                                            <version>1.8</version>
                                         </requireJavaVersion>
                                     </rules>
                                 </configuration>

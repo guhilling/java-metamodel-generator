@@ -6,13 +6,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * <p>
  * Activate the Metamodel Processor to generate a static metamodel
  * similar to the JPA 2 Metamodel for the annotated class.
- * <p/>
+ * </p><p>
  * See documentation for further details.
- * <p/>
+ * </p><p>
  * Runtime Retention is not necessary for the generator but enables You
  * to use reflection to check for a Metamodel.
+ * </p>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
