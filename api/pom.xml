@@ -3,10 +3,10 @@
     <parent>
         <groupId>de.hilling.lang.metamodel</groupId>
         <artifactId>metamodel-generator</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <version>1.4</version>
     </parent>
 
     <artifactId>api</artifactId>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.4</version>
 
 </project>
