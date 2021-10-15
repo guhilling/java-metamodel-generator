@@ -1,24 +1,15 @@
 package de.hilling.lang.metamodel.testing;
 
-import static de.hilling.lang.metamodel.testing.Person__Metamodel.birthDate;
-import static de.hilling.lang.metamodel.testing.Person__Metamodel.firstName;
-import static de.hilling.lang.metamodel.testing.Person__Metamodel.lastName;
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import de.hilling.lang.metamodel.Attribute;
-
 public class CarTest {
 
     private Car car;
-
-
     @Before
     public void setUp() {
         car = new Car(1974);
