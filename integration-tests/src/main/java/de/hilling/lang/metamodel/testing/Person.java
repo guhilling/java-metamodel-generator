@@ -34,6 +34,7 @@ public class Person {
      * @param uppercase whether the name should be rendered in uppercase.
      */
     public void setName(String value, boolean uppercase) {
+        // only for processor-testing.
     }
 
     public String getFirstName() {
