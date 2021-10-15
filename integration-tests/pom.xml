@@ -8,6 +8,10 @@
 
     <artifactId>integration-tests</artifactId>
 
+    <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>de.hilling.lang.metamodel</groupId>
