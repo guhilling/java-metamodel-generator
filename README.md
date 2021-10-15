@@ -58,3 +58,48 @@ public class Car {
 
 For the above example the following metamodel class will be generated:
 
+```java
+public abstract class Car__Metamodel {
+    private static final List<Attribute> ATTRIBUTES;
+
+    public static final Attribute<Car, Integer> year;
+
+    public static final MutableAttribute<Car, String> model;
+
+    static {
+        [...]
+    }
+
+    public static List<Attribute> attributes() {
+        return ATTRIBUTES;
+    }
+}
+```
+
+And you can query as follows (snippet from ```CarTest.java```:
+
+```java
+    @Test
+    public void readAttributes() {
+        car = new Car(1974);
+        car.setModel("Golf");
+
+        assertEquals("Golf", Car__Metamodel.model.readAttribute(car));
+        assertEquals((Integer) 1974, Car__Metamodel.year.readAttribute(car));
+
+        Car__Metamodel.model.writeAttribute(car, "Polo");
+        assertEquals("Polo", car.getModel());
+    }
+```
+
+You can also inspect dynamically using the ```getAttributes()``` method which is kind of the point of the whole processor!
+The original order of the attributes is retained in the returned attributes list.
+
+## Possible enhancements
+
+* Better support for primites: They are just auto-boxed.
+* Access attributes via map.
+* Support for generic method-inspection.
+* General infos about class structure.
+
+Most of these things would be easy to do. Feel free to create a pull request!
