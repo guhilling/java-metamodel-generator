@@ -3,7 +3,7 @@
     <parent>
         <groupId>de.hilling.lang.metamodel</groupId>
         <artifactId>metamodel-generator</artifactId>
-        <version>1.5</version>
+        <version>1.5-SNAPSHOT</version>
     </parent>
 
     <artifactId>integration-tests</artifactId>
@@ -12,12 +12,12 @@
         <dependency>
             <groupId>de.hilling.lang.metamodel</groupId>
             <artifactId>api</artifactId>
-            <version>1.5</version>
+            <version>1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>de.hilling.lang.metamodel</groupId>
             <artifactId>processor</artifactId>
-            <version>1.5</version>
+            <version>1.5-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
