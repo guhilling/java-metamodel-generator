@@ -20,11 +20,7 @@ public class ClassModel {
     }
 
     AttributeInfo getInfo(String attributeName) {
-        if (!attributes.containsKey(attributeName)) {
-            attributes.put(attributeName, new AttributeInfo());
-            names.add(attributeName);
-        }
-        return attributes.get(attributeName);
+        return attributes.computeIfAbsent(attributeName, this::addAttribute);
     }
 
     ProcessingEnvironment getEnvironment() {
@@ -43,5 +39,10 @@ public class ClassModel {
      */
     List<String> names() {
         return names;
+    }
+
+    private AttributeInfo addAttribute(String k) {
+        names.add(k);
+        return new AttributeInfo();
     }
 }
