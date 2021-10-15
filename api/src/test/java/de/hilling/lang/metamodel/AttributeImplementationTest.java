@@ -18,8 +18,14 @@ class AttributeImplementationTest {
     }
 
     @Test
-    void createAttirubteImplementation() {
+    void readAttributeValue() {
         assertEquals("testname", nameAttribute.readAttribute(sampleBean));
+    }
+
+    @Test
+    void writeAttributeValue() {
+        nameAttribute.writeAttribute(sampleBean, "gunnar");
+        assertEquals("gunnar", sampleBean.getName());
     }
 
     @Test
@@ -29,7 +35,7 @@ class AttributeImplementationTest {
         assertEquals(SampleBean.class, nameAttribute.getDeclaringType());
     }
 
-    static class TestImplementation extends AttributeImplementation<SampleBean, String> {
+    static class TestImplementation extends MutableAttributeImplementation<SampleBean, String> {
 
         public TestImplementation() {
             super("name", SampleBean.class, String.class);
@@ -37,6 +43,11 @@ class AttributeImplementationTest {
         @Override
         public String readAttribute(SampleBean bean) {
             return bean.getName();
+        }
+
+        @Override
+        public void writeAttribute(SampleBean bean, String name) {
+            bean.setName(name);
         }
     }
 }
