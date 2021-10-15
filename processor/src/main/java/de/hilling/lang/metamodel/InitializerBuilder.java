@@ -25,7 +25,7 @@ class InitializerBuilder {
     private final String        name;
     private final TypeName      attributeTypeName;
     private final TypeName      classTypeName;
-    private       AttributeInfo info;
+    private final AttributeInfo info;
 
     InitializerBuilder(TypeElement beanType, String name, AttributeInfo info) {
         this.name = name;
@@ -59,7 +59,7 @@ class InitializerBuilder {
     }
 
     private ParameterizedTypeName implementationTypeName() {
-        final Class implementationClass;
+        final Class<?> implementationClass;
         if (info.isWritable()) {
             implementationClass = MutableAttributeImplementation.class;
         } else {

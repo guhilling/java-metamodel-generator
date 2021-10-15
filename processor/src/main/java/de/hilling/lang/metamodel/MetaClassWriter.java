@@ -87,7 +87,7 @@ class MetaClassWriter {
     private ParameterizedTypeName declarationTypeName(AttributeInfo info) {
         final TypeName attributeTypeName = TypeName.get(info.getType());
         final TypeName classTypeName = TypeName.get(beanType.asType());
-        final Class declaredClass;
+        final Class<?> declaredClass;
         if (info.isWritable()) {
             declaredClass = MutableAttribute.class;
         } else {
