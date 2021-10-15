@@ -10,7 +10,7 @@ public abstract class MutableAttributeImplementation<T, A>
         extends AttributeImplementation<T, A>
         implements MutableAttribute<T, A> {
 
-    protected MutableAttributeImplementation(String name, Class<T> declaringType, Class<A> javaType) {
+    protected MutableAttributeImplementation(String name, Class declaringType, Class javaType) {
         super(name, declaringType, javaType);
     }
 }

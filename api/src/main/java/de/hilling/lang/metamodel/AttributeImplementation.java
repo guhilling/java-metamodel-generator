@@ -11,7 +11,7 @@ public abstract class AttributeImplementation<T, A> implements Attribute<T, A> {
     private final   Class<T> declaringType;
     private final   Class<A> javaType;
 
-    protected AttributeImplementation(String name, Class<T> declaringType, Class<A> javaType) {
+    protected AttributeImplementation(String name, Class declaringType, Class javaType) {
         this.javaType = javaType;
         this.name = name;
         this.declaringType = declaringType;

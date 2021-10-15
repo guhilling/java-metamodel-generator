@@ -54,8 +54,17 @@ class InitializerBuilder {
                       .addParameter(classTypeName, BEAN_PARAMETER_NAME).addParameter(attributeTypeName, "value")
                       .addStatement("$N.set$L($N)", BEAN_PARAMETER_NAME, camelName, "value").build());
         }
-        return TypeSpec.anonymousClassBuilder("$S, $T.class, $T.class", name, classTypeName, attributeTypeName)
+        return TypeSpec.anonymousClassBuilder("$S, $T.class, $T.class", name, classTypeName, unparametrizedName(attributeTypeName))
                        .addSuperinterface(superinterface).addMethods(methods).build();
+    }
+
+    private TypeName unparametrizedName(TypeName attributeTypeName) {
+        if(attributeTypeName instanceof ParameterizedTypeName) {
+            ParameterizedTypeName parameterizedTypeName = (ParameterizedTypeName) attributeTypeName;
+            return parameterizedTypeName.rawType;
+        } else {
+            return attributeTypeName;
+        }
     }
 
     private ParameterizedTypeName implementationTypeName() {

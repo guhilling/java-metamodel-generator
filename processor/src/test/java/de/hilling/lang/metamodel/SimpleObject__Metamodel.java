@@ -12,6 +12,8 @@ public abstract class SimpleObject__Metamodel {
 
     public static final MutableAttribute<SimpleObject, String> name;
 
+    public static final MutableAttribute<SimpleObject, List<String>> friends;
+
     public static final Attribute<SimpleObject, Integer> age;
 
     static {
@@ -26,6 +28,17 @@ public abstract class SimpleObject__Metamodel {
                 object.setName(value);
             }
         };
+        friends = new MutableAttributeImplementation<SimpleObject, List<String>>("friends", SimpleObject.class, List.class) {
+            @Override
+            public List<String> readAttribute(SimpleObject object) {
+                return object.getFriends();
+            }
+
+            @Override
+            public void writeAttribute(SimpleObject object, List<String> value) {
+                object.setFriends(value);
+            }
+        };
         age = new AttributeImplementation<SimpleObject, Integer>("age", SimpleObject.class, Integer.class) {
             @Override
             public Integer readAttribute(SimpleObject object) {
@@ -35,6 +48,7 @@ public abstract class SimpleObject__Metamodel {
         List<Attribute> attributesList = new LinkedList<>();
         attributesList.add(name);
         attributesList.add(age);
+        attributesList.add(friends);
         ATTRIBUTES = Collections.unmodifiableList(attributesList);
     }
 
