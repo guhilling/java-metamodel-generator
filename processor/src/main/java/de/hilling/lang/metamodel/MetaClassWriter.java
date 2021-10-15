@@ -85,7 +85,7 @@ class MetaClassWriter {
     }
 
     private ParameterizedTypeName declarationTypeName(AttributeInfo info) {
-        final TypeName attributeTypeName = TypeName.get(info.getType());
+        final TypeName attributeTypeName = Utils.getAttributeTypeName(info);
         final TypeName classTypeName = TypeName.get(beanType.asType());
         final Class<?> declaredClass;
         if (info.isWritable()) {
@@ -95,4 +95,5 @@ class MetaClassWriter {
         }
         return ParameterizedTypeName.get(ClassName.get(declaredClass), classTypeName, attributeTypeName);
     }
+
 }

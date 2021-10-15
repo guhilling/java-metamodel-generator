@@ -30,7 +30,7 @@ class InitializerBuilder {
     InitializerBuilder(TypeElement beanType, String name, AttributeInfo info) {
         this.name = name;
         this.info = info;
-        attributeTypeName = TypeName.get(info.getType());
+        attributeTypeName = Utils.getAttributeTypeName(info);
         classTypeName = TypeName.get(beanType.asType());
     }
 
