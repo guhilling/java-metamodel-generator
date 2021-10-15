@@ -1,11 +1,9 @@
 package de.hilling.lang.metamodel;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import de.hilling.lang.metamodel.AttributeImplementation;
 
 class AttributeImplementationTest {
 
@@ -22,6 +20,13 @@ class AttributeImplementationTest {
     @Test
     void createAttirubteImplementation() {
         assertEquals("testname", nameAttribute.readAttribute(sampleBean));
+    }
+
+    @Test
+    void checkCorrectInfo() {
+        assertEquals("name", nameAttribute.getName());
+        assertEquals(String.class, nameAttribute.getJavaType());
+        assertEquals(SampleBean.class, nameAttribute.getDeclaringType());
     }
 
     static class TestImplementation extends AttributeImplementation<SampleBean, String> {
