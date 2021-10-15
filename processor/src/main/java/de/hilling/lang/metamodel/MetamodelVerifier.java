@@ -24,13 +24,12 @@ public class MetamodelVerifier extends AbstractProcessor {
     public static final String ERROR_MESSAGE = "wrong use of annotation: must be used on class or abstract class.";
     private TypeMirror generateModel;
     private Types      typeUtils;
-    private Elements   elementUtils;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
         typeUtils = processingEnv.getTypeUtils();
-        elementUtils = processingEnv.getElementUtils();
+        Elements elementUtils = processingEnv.getElementUtils();
         generateModel = elementUtils.getTypeElement(GenerateModel.class.getName()).asType();
     }
 
