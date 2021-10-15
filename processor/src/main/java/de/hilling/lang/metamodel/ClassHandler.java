@@ -27,7 +27,7 @@ public class ClassHandler {
     ClassModel invoke() {
         type.getEnclosedElements().stream()
             .filter(element -> element.getKind() == ElementKind.METHOD)
-            .map(ExecutableElement.class::cast)
+            .map(element -> (ExecutableElement) element)
             .forEach(this::collectAccessorInfo);
         return classModel;
     }

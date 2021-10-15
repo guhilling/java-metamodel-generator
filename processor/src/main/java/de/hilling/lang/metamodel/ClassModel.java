@@ -20,7 +20,11 @@ public class ClassModel {
     }
 
     AttributeInfo getInfo(String attributeName) {
-        return attributes.computeIfAbsent(attributeName, k -> new AttributeInfo());
+        if (!attributes.containsKey(attributeName)) {
+            attributes.put(attributeName, new AttributeInfo());
+            names.add(attributeName);
+        }
+        return attributes.get(attributeName);
     }
 
     ProcessingEnvironment getEnvironment() {
