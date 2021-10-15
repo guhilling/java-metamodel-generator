@@ -42,8 +42,8 @@
         <developer>
             <name>Gunnar Hilling</name>
             <id>gunnar</id>
-            <email>cdi-test@hilling.de</email>
-            <organization>Gunnar Hilling IT Consulting GmbH</organization>
+            <email>gunnar@hilling.de</email>
+            <organization>Hilling IT GmbH</organization>
             <timezone>+1</timezone>
             <roles>
                 <role>architect</role>
@@ -56,7 +56,6 @@
         <module>api</module>
         <module>processor</module>
         <module>integration-tests</module>
-        <module>report</module>
     </modules>
 
     <dependencyManagement>
