@@ -18,6 +18,7 @@ public abstract class AttributeImplementation<T, A> implements Attribute<T, A> {
         this.declaringType = declaringType;
     }
 
+    @Override
     public final String getName() {
         return name;
     }
@@ -27,6 +28,7 @@ public abstract class AttributeImplementation<T, A> implements Attribute<T, A> {
         return declaringType;
     }
 
+    @Override
     public final Class<A> getJavaType() {
         return javaType;
     }
