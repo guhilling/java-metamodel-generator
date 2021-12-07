@@ -22,6 +22,7 @@ public abstract class AttributeImplementation<T, A> implements Attribute<T, A> {
         return name;
     }
 
+    @Override
     public final Class<T> getDeclaringType() {
         return declaringType;
     }
