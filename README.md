@@ -8,8 +8,8 @@
 
 ## Introduction
 
-Sometimes you'd like to have a _real_, typesafe metamodel of you java classes.
-This Library (metamodel-generator) provides an annotation-processor that will create such a metamodel.
+Sometimes you'd like to have a _real_, typesafe metamodel of your java classes.
+This library (metamodel-generator) provides an annotation-processor that will create such a metamodel.
 
 ## Setup
 
