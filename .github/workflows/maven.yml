@@ -9,9 +9,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [ '8' ]
+        java: [ '11' ]
         include:
-          - java: 11
+          - java: 17
             extraargs: >
               jacoco:report
               sonar:sonar
