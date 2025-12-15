@@ -1,6 +1,9 @@
 name: Build Static Metamodel Generator
 
-on: [push]
+on:
+  push:
+  pull_request:
+
 
 jobs:
   build:
