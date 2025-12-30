@@ -17,10 +17,10 @@ jobs:
           - java: 11
             extraargs: >
               jacoco:report
-              sonar:sonar
-              -Dsonar.host.url=https://sonarcloud.io
-              -Dsonar.organization=guhilling
-              -Dsonar.projectKey=guhilling_java-metamodel-generator
+#              sonar:sonar
+#              -Dsonar.host.url=https://sonarcloud.io
+#              -Dsonar.organization=guhilling
+#              -Dsonar.projectKey=guhilling_java-metamodel-generator
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
