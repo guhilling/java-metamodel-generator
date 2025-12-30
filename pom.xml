@@ -139,10 +139,9 @@
                         <id>post-unit-test</id>
                         <phase>test</phase>
                         <goals>
-                            <goal>report</goal>
+                            <goal>report-aggregate</goal>
                         </goals>
                         <configuration>
-                            <dataFile>${jacoco.ut.execution.data.file}</dataFile>
                             <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
                         </configuration>
                     </execution>
