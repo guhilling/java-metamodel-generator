@@ -13,12 +13,12 @@ jobs:
       fail-fast: false
       matrix:
         java: [ '11' ]
-            extraargs: >
-              jacoco:report
-              sonar:sonar
-              -Dsonar.host.url=https://sonarcloud.io
-              -Dsonar.organization=guhilling
-              -Dsonar.projectKey=guhilling_java-metamodel-generator
+        extraargs: >
+          jacoco:report
+          sonar:sonar
+          -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.organization=guhilling
+          -Dsonar.projectKey=guhilling_java-metamodel-generator
     name: Maven Build JDK ${{ matrix.java }}
 
     steps:
