@@ -7,6 +7,7 @@
     </parent>
 
     <artifactId>integration-tests</artifactId>
+    <name>Static Metamodel Generator Tests</name>
 
     <properties>
         <sonar.skip>true</sonar.skip>

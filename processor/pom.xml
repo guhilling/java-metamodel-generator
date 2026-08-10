@@ -7,6 +7,7 @@
     </parent>
 
     <artifactId>processor</artifactId>
+    <name>Static Metamodel Generator Implementation</name>
 
     <dependencies>
         <dependency>
