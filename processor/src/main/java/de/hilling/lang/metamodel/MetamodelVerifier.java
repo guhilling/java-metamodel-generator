@@ -6,7 +6,6 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
@@ -18,7 +17,6 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 @SupportedAnnotationTypes({"de.hilling.lang.metamodel.GenerateModel"})
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class MetamodelVerifier extends AbstractProcessor {
 
     public static final String ERROR_MESSAGE = "wrong use of annotation: must be used on class or abstract class.";
@@ -37,6 +35,11 @@ public class MetamodelVerifier extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         roundEnv.getElementsAnnotatedWith(GenerateModel.class).forEach(this::verifyNotAnAnnotation);
         return false;
+    }
+
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.latestSupported();
     }
 
     private void verifyNotAnAnnotation(Element element) {
