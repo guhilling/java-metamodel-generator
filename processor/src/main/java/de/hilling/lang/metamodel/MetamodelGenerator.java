@@ -43,7 +43,7 @@ public class MetamodelGenerator extends AbstractProcessor {
 
     @Override
     public SourceVersion getSupportedSourceVersion() {
-        return SourceVersion.RELEASE_8;
+        return SourceVersion.latestSupported();
     }
 
     private void writeMetaClass(TypeElement element, ClassModel classModel) {
