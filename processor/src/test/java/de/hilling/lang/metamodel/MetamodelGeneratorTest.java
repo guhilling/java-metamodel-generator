@@ -4,6 +4,7 @@ import static com.google.testing.compile.Compiler.javac;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.stream.Collectors;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.Optional;
@@ -79,6 +80,10 @@ public class MetamodelGeneratorTest {
     }
 
     private String normalize(String source) {
-        return source.replace("\r\n", "\n").trim();
+        return source.replace("\r\n", "\n")
+                     .lines()
+                     .map(String::trim)
+                     .collect(Collectors.joining("\n"))
+                     .trim();
     }
 }
