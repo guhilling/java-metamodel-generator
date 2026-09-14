@@ -12,11 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [ '11' ]
-        include:
-          - java: 11
-            extraargs: >
-              jacoco:report
+        java: [ '11', '17', '24' ]
 #              sonar:sonar
 #              -Dsonar.host.url=https://sonarcloud.io
 #              -Dsonar.organization=guhilling
@@ -39,4 +35,7 @@ jobs:
     - name: Maven Build JDK ${{ matrix.java }}
       run: mvn -B package --file pom.xml -DskipTests
     - name: Maven Test JDK ${{ matrix.java }}
-      run: mvn -B test --file pom.xml ${{ matrix.extraargs }}
+      run: mvn -B test --file pom.xml
+    - name: JaCoCo Report JDK ${{ matrix.java }}
+      if: matrix.java == '11'
+      run: mvn -B jacoco:report --file pom.xml
