@@ -5,6 +5,11 @@
   ],
   "packageRules": [
     {
+      "matchPackageNames": ["org.junit.jupiter:junit-jupiter"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
       "automerge": true
