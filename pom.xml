@@ -14,7 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <compile-testing.version>0.23.0</compile-testing.version>
         <guava.version>23.1-jre</guava.version>
-        <maven.compiler.release>11</maven.compiler.release>
+        <junit.version>6.0.0</junit.version>
+        <maven.compiler.release>17</maven.compiler.release>
     </properties>
 
     <scm>
@@ -60,9 +61,9 @@
                 <version>1.13.0</version>
             </dependency>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.13.2</version>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
