@@ -14,13 +14,13 @@ import org.junit.jupiter.api.Test;
 
 import de.hilling.lang.metamodel.Attribute;
 
-public class PersonTest {
+class PersonTest {
 
     private static final LocalDate BIRTH_DATE = LocalDate.of(1971, Month.JUNE, 15);
     private Person person;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         person = new Person();
         person.setFirstName("Gunnar");
         person.setLastName("Hilling");
@@ -28,21 +28,21 @@ public class PersonTest {
     }
 
     @Test
-    public void readAttributes() {
+    void readAttributes() {
         assertEquals(BIRTH_DATE, birthDate.readAttribute(person));
         assertEquals("Gunnar", firstName.readAttribute(person));
         assertEquals("Hilling", lastName.readAttribute(person));
     }
 
     @Test
-    public void checkAttributes() {
+    void checkAttributes() {
         assertEquals(Person.class, birthDate.getDeclaringType());
         assertEquals(LocalDate.class, birthDate.getJavaType());
         assertEquals("birthDate", birthDate.getName());
     }
 
     @Test
-    public void verifyAttributeListOrder() {
+    void verifyAttributeListOrder() {
         final List<Attribute> attributes = Person__Metamodel.attributes();
         assertEquals(3, attributes.size());
         assertEquals(firstName, attributes.get(0));
@@ -51,7 +51,7 @@ public class PersonTest {
     }
 
     @Test
-    public void writeAttributes() {
+    void writeAttributes() {
         birthDate.writeAttribute(person, LocalDate.MIN);
         firstName.writeAttribute(person, "Dennis");
         lastName.writeAttribute(person, "Ritchie");
