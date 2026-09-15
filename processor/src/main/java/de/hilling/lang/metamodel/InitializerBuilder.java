@@ -59,8 +59,7 @@ class InitializerBuilder {
     }
 
     private TypeName unparametrizedName(TypeName attributeTypeName) {
-        if(attributeTypeName instanceof ParameterizedTypeName) {
-            ParameterizedTypeName parameterizedTypeName = (ParameterizedTypeName) attributeTypeName;
+        if(attributeTypeName instanceof ParameterizedTypeName parameterizedTypeName) {
             return parameterizedTypeName.rawType;
         } else {
             return attributeTypeName;
