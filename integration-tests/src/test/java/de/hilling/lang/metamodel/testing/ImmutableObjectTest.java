@@ -1,15 +1,15 @@
 package de.hilling.lang.metamodel.testing;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ImmutableObjectTest {
 
     private ImmutableObject object;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         object = new ImmutableObject("Duke");
     }

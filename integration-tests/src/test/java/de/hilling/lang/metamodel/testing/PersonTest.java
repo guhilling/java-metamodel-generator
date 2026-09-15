@@ -3,15 +3,14 @@ package de.hilling.lang.metamodel.testing;
 import static de.hilling.lang.metamodel.testing.Person__Metamodel.birthDate;
 import static de.hilling.lang.metamodel.testing.Person__Metamodel.firstName;
 import static de.hilling.lang.metamodel.testing.Person__Metamodel.lastName;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import de.hilling.lang.metamodel.Attribute;
 
@@ -20,7 +19,7 @@ public class PersonTest {
     private static final LocalDate BIRTH_DATE = LocalDate.of(1971, Month.JUNE, 15);
     private Person person;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         person = new Person();
         person.setFirstName("Gunnar");

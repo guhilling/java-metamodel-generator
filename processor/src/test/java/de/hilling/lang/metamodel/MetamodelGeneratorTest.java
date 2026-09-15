@@ -1,8 +1,8 @@
 package de.hilling.lang.metamodel;
 
 import static com.google.testing.compile.Compiler.javac;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -11,8 +11,8 @@ import java.util.Optional;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.google.testing.compile.Compilation;
 import com.google.testing.compile.Compiler;
@@ -22,7 +22,7 @@ public class MetamodelGeneratorTest {
 
     private Compiler compiler;
 
-    @Before
+    @BeforeEach
     public void setUpCompiler() {
         compiler = javac().withProcessors(new MetamodelVerifier(), new MetamodelGenerator());
     }
