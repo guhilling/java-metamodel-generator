@@ -7,11 +7,11 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CarTest {
+class CarTest {
 
     private Car car;
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         car = new Car(1974);
         car.setModel("Golf");
         car.getOwners().add("Erna");
@@ -19,7 +19,7 @@ public class CarTest {
     }
 
     @Test
-    public void readAttributes() {
+    void readAttributes() {
         assertEquals("Golf", Car__Metamodel.model.readAttribute(car));
         assertEquals((Integer) 1974, Car__Metamodel.year.readAttribute(car));
         List<String> owners = Car__Metamodel.owners.readAttribute(car);
@@ -29,7 +29,7 @@ public class CarTest {
     }
 
     @Test
-    public void writeAttributes() {
+    void writeAttributes() {
         Car__Metamodel.model.writeAttribute(car, "Polo");
         assertEquals("Polo", car.getModel());
     }
