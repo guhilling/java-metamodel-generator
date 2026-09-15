@@ -3,6 +3,7 @@ package de.hilling.lang.metamodel;
 import static com.google.testing.compile.Compiler.javac;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -66,7 +67,7 @@ public class MetamodelGeneratorTest {
 
     private void assertGeneratedSourceEquals(Compilation compilation, Class<?> expectedSourceClass) {
         Optional<JavaFileObject> generatedSource = compilation.generatedSourceFile(expectedSourceClass.getCanonicalName());
-        assertEquals(compilation.toString(), true, generatedSource.isPresent());
+        assertTrue(generatedSource.isPresent(), compilation.toString());
         assertEquals(normalize(readSource(source(expectedSourceClass))), normalize(readSource(generatedSource.orElseThrow())));
     }
 
